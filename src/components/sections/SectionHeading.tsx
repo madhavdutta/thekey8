@@ -1,7 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export const SectionHeading = ({ 
+interface SectionHeadingProps {
+  title: string;
+  subtitle?: string;
+  label?: string;
+  className?: string;
+  align?: "center" | "left" | "right";
+  labelColor?: string;
+}
+
+export const SectionHeading: React.FC<SectionHeadingProps> = ({ 
   title, 
   subtitle, 
   label,

@@ -126,7 +126,7 @@ export function Navigation() {
                 <Menu.Button className="flex items-center space-x-2 hover:bg-accent rounded-full p-1 transition-colors">
                   <Avatar
                     className="h-8 w-8"
-                    alt={getInitials(user.user_metadata?.name)}
+                    alt={getInitials(user.name)}
                   />
                   <ChevronDown className="h-4 w-4 text-muted-foreground" />
                 </Menu.Button>

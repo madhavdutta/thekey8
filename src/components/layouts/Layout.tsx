@@ -3,7 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ScrollProvider } from '../providers/ScrollProvider';
 import React from 'react';
 
-export function Layout({ children }) {
+import { ReactNode } from 'react';
+
+interface LayoutProps {
+  children: ReactNode;
+}
+
+export function Layout({ children }: LayoutProps) {
   return (
     <ScrollProvider>
       <AnimatePresence mode="wait">

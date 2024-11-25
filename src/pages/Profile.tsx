@@ -76,7 +76,7 @@ export function Profile() {
       const { error: updateError } = await supabase
         .from('users')
         .update({ avatar_url: filePath })
-        .eq('id', user?.id)
+        .eq('id', user!.id)
 
       if (updateError) throw updateError
 
@@ -97,7 +97,7 @@ export function Profile() {
       const { error } = await supabase
         .from('users')
         .update(formData)
-        .eq('id', user?.id)
+        .eq('id', user!.id)
 
       if (error) throw error
 

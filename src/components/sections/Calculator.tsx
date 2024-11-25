@@ -34,7 +34,34 @@ export const QuickCalculator = () => {
   const [showModal, setShowModal] = useState(false);
 
   // Format number with commas as user types
-  const handleAmountChange = (e) => {
+  interface Stats {
+    monthlyPayment: number;
+    totalInterest: number;
+    totalPayment: number;
+    yearlyBreakdown: Array<{
+      year: number;
+      principal: number;
+      interest: number;
+      remainingBalance: number;
+    }>;
+    loanToValue: number;
+    monthlyIncomeRequired: number;
+  }
+
+  interface StatsCardProps {
+    icon: React.ComponentType<{ className?: string }>;
+    title: string;
+    stats: Array<{ label: string; value: string }>;
+  }
+
+  interface ModalContentProps {
+    stats: Stats;
+    loanAmount: string;
+    years: number;
+    interestRate: number;
+  }
+
+  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value.replace(/[^\d]/g, '');
     const numericValue = parseInt(value);
 
@@ -120,7 +147,7 @@ export const QuickCalculator = () => {
   const progress = calculateProgress();
 
   // Stats Card Component
-  const StatsCard = ({ icon: Icon, title, stats }) => (
+  const StatsCard: React.FC<StatsCardProps> = ({ icon: Icon, title, stats }) => (
     <div className="p-4 bg-accent/30 dark:bg-accent/40 backdrop-blur-sm rounded-xl
                     border border-border/20 dark:border-white/[0.08]
                     hover:bg-accent/40 dark:hover:bg-accent/50
@@ -145,33 +172,33 @@ export const QuickCalculator = () => {
 
 
   // Modal Content Component
-  const ModalContent = ({ stats, loanAmount, years, interestRate }) => (
+  const ModalContent: React.FC<ModalContentProps> = ({ stats, loanAmount, years, interestRate }) => (
     <div className="space-y-8">
       {/* Key Metrics */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="col-span-full">
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-primary/10 via-transparent to-secondary/10
+        <div className="col-span-full">
+          <div className="p-6 rounded-2xl bg-gradient-to-br from-primary/10 via-transparent to-secondary/10
                        border border-border/20 dark:border-white/[0.08] backdrop-blur-sm">
-              <h3 className="text-lg font-semibold mb-4 text-foreground">Monthly Breakdown</h3>
-              <div className="grid grid-cols-2 gap-6">
-                <div className="p-4 bg-background/50 dark:bg-background/30 rounded-xl
+            <h3 className="text-lg font-semibold mb-4 text-foreground">Monthly Breakdown</h3>
+            <div className="grid grid-cols-2 gap-6">
+              <div className="p-4 bg-background/50 dark:bg-background/30 rounded-xl
                           border border-border/10 dark:border-white/[0.05]">
-                  <div className="text-sm text-muted-foreground">EMI Payment</div>
-                  <div className="text-2xl font-bold text-primary mt-1">
-                    {stats.monthlyPayment.toLocaleString()} AED
-                  </div>
+                <div className="text-sm text-muted-foreground">EMI Payment</div>
+                <div className="text-2xl font-bold text-primary mt-1">
+                  {stats.monthlyPayment.toLocaleString()} AED
                 </div>
-                <div className="p-4 bg-background/50 dark:bg-background/30 rounded-xl
+              </div>
+              <div className="p-4 bg-background/50 dark:bg-background/30 rounded-xl
                           border border-border/10 dark:border-white/[0.05]">
-                  <div className="text-sm text-muted-foreground">Total Cost</div>
-                  <div className="text-2xl font-bold text-foreground mt-1">
-                    {stats.totalPayment.toLocaleString()} AED
-                  </div>
+                <div className="text-sm text-muted-foreground">Total Cost</div>
+                <div className="text-2xl font-bold text-foreground mt-1">
+                  {stats.totalPayment.toLocaleString()} AED
                 </div>
               </div>
             </div>
           </div>
-        
+        </div>
+
         {/* Key Stats Cards */}
         <StatsCard
           icon={Percent}
@@ -273,7 +300,19 @@ export const QuickCalculator = () => {
 
 
 
-  function getRecommendations(loanAmount, years, interestRate, monthlyPayment) {
+  interface Recommendations {
+    loanAmount: string;
+    years: number;
+    interestRate: number;
+    monthlyPayment: number;
+  }
+
+  function getRecommendations(
+    loanAmount: string,
+    years: number,
+    interestRate: number,
+    monthlyPayment: number
+  ): string[] {
     const recommendations: string[] = [];
     const loanValue = parseFloat(loanAmount.replace(/,/g, '')) || 0;
 

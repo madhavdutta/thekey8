@@ -7,7 +7,13 @@ const ScrollContext = createContext({
   scrollYProgress: 0
 });
 
-export function ScrollProvider({ children }) {
+import { ReactNode } from 'react';
+
+interface ScrollProviderProps {
+  children: ReactNode;
+}
+
+export function ScrollProvider({ children }: ScrollProviderProps) {
   const { scrollY, scrollYProgress } = useFramerScroll();
   const [scroll, setScroll] = useState({ scrollY: 0, scrollYProgress: 0 });
 

@@ -3,7 +3,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useScroll } from '../providers/ScrollProvider';
 
-export const SectionWrapper = ({ children, className = '' }) => {
+import { ReactNode } from 'react';
+
+interface SectionWrapperProps {
+  children: ReactNode;
+  className?: string;
+}
+
+export const SectionWrapper = ({ children, className = '' }: SectionWrapperProps) => {
   const { scrollY } = useScroll();
   
   return (

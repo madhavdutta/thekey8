@@ -15,16 +15,20 @@ export async function signUp(email: string, password: string, name: string) {
   
   if (data.user) {
     // Create a profile record
-    await supabase
-      .from('users')
-      .insert([
-        {
-          id: data.user.id,
-          email: data.user.email,
-          name: name,
-          preferred_language: 'English'
-        }
-      ])
+    if (data.user.email) {
+      await supabase
+        .from('users')
+        .insert([
+          {
+            id: data.user.id,
+            email: data.user.email,
+            name: name,
+            preferred_language: 'English'
+          }
+        ])
+    } else {
+      throw new Error('User email is undefined')
+    }
   }
 
   return data
