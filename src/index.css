@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    /* Light theme */
+    --background: 0 0% 98%;
+    --foreground: 240 10% 3.9%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    
+    /* Primary - Purple (unchanged) */
+    --primary: 265 100% 58%;
+    --primary-foreground: 0 0% 98%;
+    
+    /* Secondary - Mint (unchanged) */
+    --secondary: 156 100% 50%;
+    --secondary-foreground: 240 10% 3.9%;
+    
+    /* Accent - More subtle */
+    --accent: 265 25% 94%;
+    --accent-foreground: 265 100% 58%;
+    
+    /* Muted - Softer */
+    --muted: 240 4% 95%;
+    --muted-foreground: 240 4% 46%;
+    
+    /* Borders - Subtler */
+    --border: 240 4% 90%;
+    --input: 240 4% 90%;
+    
+    /* Ring - Matching primary */
+    --ring: 265 100% 58%;
+  }
+ 
+  .dark {
+    /* Dark theme - Refined */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    
+    /* Card - Slightly lighter than background */
+    --card: 240 10% 5%;
+    --card-foreground: 0 0% 98%;
+    
+    --popover: 240 10% 5%;
+    --popover-foreground: 0 0% 98%;
+    
+    /* Primary & Secondary - Unchanged */
+    --primary: 265 100% 58%;
+    --primary-foreground: 0 0% 98%;
+    
+    --secondary: 156 100% 50%;
+    --secondary-foreground: 240 10% 3.9%;
+    
+    /* Accent - More visible in dark */
+    --accent: 265 30% 16%;
+    --accent-foreground: 265 100% 58%;
+    
+    /* Muted - Better contrast */
+    --muted: 240 8% 12%;
+    --muted-foreground: 240 5% 65%;
+    
+    /* Borders - More visible but not harsh */
+    --border: 240 8% 12%;
+    --input: 240 8% 12%;
+  }
+}
+
+/* Dashboard-specific styles */
+@layer utilities {
+  .dashboard-card {
+    @apply bg-card/50 border border-border/50 rounded-lg 
+           shadow-sm backdrop-blur-sm
+           hover:bg-card hover:border-border/80
+           dark:hover:border-white/10
+           transition-all duration-300;
+  }
+
+  .dashboard-input {
+    @apply bg-background/50 border border-border/60
+           rounded-lg px-4 py-2 
+           focus:ring-2 focus:ring-primary/20 
+           focus:border-primary/30
+           dark:border-white/10
+           dark:focus:border-primary/50
+           placeholder:text-muted-foreground 
+           transition-all duration-300;
+  }
+
+  .dashboard-select {
+    @apply bg-background/50 border border-border/60
+           rounded-lg px-4 py-2
+           focus:ring-2 focus:ring-primary/20 
+           focus:border-primary/30
+           dark:border-white/10
+           dark:focus:border-primary/50
+           transition-all duration-300;
+  }
+
+  .interactive-element {
+    @apply hover:bg-accent/40
+           dark:hover:bg-accent/30
+           hover:border-primary/20
+           dark:hover:border-primary/20
+           active:bg-accent/60
+           dark:active:bg-accent/40
+           transition-all duration-300;
+  }
+
+  .glass-panel {
+    @apply bg-background/40 backdrop-blur-md
+           border border-border/40
+           dark:border-white/[0.08]
+           dark:bg-background/30
+           rounded-lg
+           transition-all duration-300;
+  }
+
+  .dashboard-section {
+    @apply bg-card/50 backdrop-blur-sm
+           border border-border/40
+           dark:border-white/[0.08]
+           rounded-lg p-6
+           transition-all duration-300;
+  }
+
+  /* Status badges with better contrast */
+  .status-badge {
+    @apply px-2.5 py-1 rounded-full text-sm font-medium
+           border border-transparent
+           transition-all duration-300;
+  }
+
+  .status-badge-success {
+    @apply bg-secondary/10 text-secondary
+           dark:bg-secondary/20 dark:text-secondary-foreground;
+  }
+
+  .status-badge-warning {
+    @apply bg-yellow-100/10 text-yellow-600
+           dark:bg-yellow-400/20 dark:text-yellow-300;
+  }
+
+  .status-badge-error {
+    @apply bg-red-100/10 text-red-600
+           dark:bg-red-400/20 dark:text-red-300;
+  }
+
+  /* Hover card effect */
+  .hover-card-effect {
+    @apply hover:shadow-lg
+           hover:shadow-primary/5
+           dark:hover:shadow-primary/10
+           hover:border-border/80
+           dark:hover:border-white/10
+           transition-all duration-300;
+  }
+}

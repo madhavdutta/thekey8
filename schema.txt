@@ -1,0 +1,89 @@
+Collection Name: users
+
+Fields:
+1. name (text)
+   - required
+   - min length: 2
+   - max length: 100
+
+2. email (email)
+   - required
+   - unique
+
+3. password (text)
+   - required
+   - min length: 8
+   - hidden
+
+4. phone (text)
+   - optional
+   - pattern: ^(\+971|00971|0)?(?:50|51|52|55|56|58|2|3|4|6|7|9)\d{7}$
+   - example formats: +97150XXXXXXX, 050XXXXXXX
+
+5. emirates_id (text)
+   - optional
+   - pattern: ^784-[0-9]{4}-[0-9]{7}-[0-9]{1}$
+   - example format: 784-1234-1234567-1
+
+6. nationality (text)
+   - optional
+
+7. monthly_income (number)
+   - optional
+   - min: 0
+
+8. employment_status (select)
+   - optional
+   - options: 
+     - Employed
+     - Self-Employed
+     - Business Owner
+     - Retired
+     - Other
+
+9. company_name (text)
+   - optional
+   - max length: 200
+
+10. employment_duration (number)
+   - optional
+   - min: 0
+   - represents years
+
+11. preferred_language (select)
+   - optional
+   - default: "English"
+   - options:
+     - English
+     - Arabic
+
+12. avatar (file)
+   - optional
+   - allowed types: image/jpeg, image/png
+   - max size: 5MB
+
+13. created (date)
+   - system field
+   - automatically managed
+
+14. updated (date)
+   - system field
+   - automatically managed
+
+15. verified (boolean)
+   - default: false
+   - indicates email verification status
+
+16. role (select)
+   - required
+   - default: "user"
+   - options:
+     - user
+     - admin
+     - agent
+
+Additional Settings:
+- Enable email verification
+- Enable password reset
+- Set minimum password length to 8
+- Enable authentication
