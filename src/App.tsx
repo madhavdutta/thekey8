@@ -10,6 +10,7 @@ import { MainLayout } from './components/layouts/MainLayout'
 import { ProtectedRoute } from './components/ProtectedRoute'
 import { AuthCallback } from './routes/auth-callback'
 import { ThemeProvider } from './contexts/themecontext'
+import { Application } from './pages/application'
 
 function App(): JSX.Element {
   return (
@@ -25,6 +26,7 @@ function App(): JSX.Element {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/application" element={<Application />} />
           </Route>
         </Route>
       </Routes>

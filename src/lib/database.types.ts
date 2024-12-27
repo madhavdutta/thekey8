@@ -37,7 +37,7 @@ export interface Database {
           employment_status?: string | null
           company_name?: string | null
           employment_duration?: number | null
-          preferred_language?: string
+          preferred_language: string
           avatar_url?: string | null
         }
         Update: {
@@ -58,41 +58,82 @@ export interface Database {
         Row: {
           id: string
           created_at: string
-          user_id: string
-          property_type: string
-          location: string
-          status: string
-          loan_amount: number
-          property_value: number
-          bank_name: string
-          interest_rate: number
+          about_me: Json
+          financial_requirement: Json
+          employment: Json
+          income: Json
+          liability: Json
+          property_details: Json
+          application_status: string
           offer_status: string
-          documents: Json[]
+          documents: Json
+          updated_at: string
+          userId: string
         }
         Insert: {
           id?: string
           created_at?: string
-          user_id: string
-          property_type: string
-          location: string
-          status?: string
-          loan_amount: number
-          property_value: number
-          bank_name: string
-          interest_rate: number
+          about_me: Json
+          financial_requirement: Json
+          employment: Json
+          income: Json
+          liability: Json
+          property_details: Json
+          application_status?: string
           offer_status?: string
-          documents?: Json[]
+          documents?: Json
+          updated_at?: string
+          userId: string
         }
         Update: {
-          property_type?: string
-          location?: string
-          status?: string
-          loan_amount?: number
-          property_value?: number
-          bank_name?: string
-          interest_rate?: number
+          about_me?: Json
+          financial_requirement?: Json
+          employment?: Json
+          income?: Json
+          liability?: Json
+          property_details?: Json
+          application_status?: string
           offer_status?: string
-          documents?: Json[]
+          documents?: Json
+          updated_at?: string
+          userId: string
+        }
+      }
+      bankPoliciesData: {
+        Row: {
+          id: string
+          created_at: string
+          bankName: string
+          policyKeyName: string
+          policyKeyValue: string
+        }
+        Insert: {
+          id?: string
+          bankName: string
+          policyKeyName: string
+          policyKeyValue: string
+        }
+        Update: {
+          bankName?: string
+          policyKeyName?: string
+          policyKeyValue?: string
+        }
+      }
+      eiborData: {
+        Row: {
+          eiborPeriod: string
+          eiborRates: number
+          gov: string
+        }
+        Insert: {
+          eiborPeriod: string
+          eiborRates: number
+          gov: string
+        }
+        Update: {
+          eiborPeriod?: string
+          eiborRates?: number
+          gov?: string
         }
       }
     }
